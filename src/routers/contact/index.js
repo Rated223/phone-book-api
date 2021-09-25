@@ -3,6 +3,7 @@ import { Router } from 'express';
 import getContact from './getContact';
 import getContacts from './getContacts';
 import saveContact from './saveContact';
+import deleteContact from './deleteContact';
 
 const contactRouter = Router();
 
@@ -27,6 +28,14 @@ contactRouter.post(
   }),
   saveContact
 );
-contactRouter.delete('/contacts');
+contactRouter.delete(
+  '/contacts/:contactId',
+  celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+      contactId: Joi.number().integer(),
+    }),
+  }),
+  deleteContact
+);
 
 export default contactRouter;

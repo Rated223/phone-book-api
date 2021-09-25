@@ -1,7 +1,7 @@
 import { manageErrors } from '../helpers';
 import findContact from './helpers/findContact';
 
-const getContact = async (req, res) => {
+const deleteContact = async (req, res) => {
   try {
     const contact = await findContact({
       contactId: req.params.contactId,
@@ -9,10 +9,11 @@ const getContact = async (req, res) => {
       res,
     });
 
-    res.status(200).send({ success: true, data: { contact } });
+    contact.destroy();
+    res.status(204).send({ success: true });
   } catch (error) {
     manageErrors(error, res);
   }
 };
 
-export default getContact;
+export default deleteContact;
