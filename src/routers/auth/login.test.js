@@ -18,7 +18,7 @@ test('Should allow a user login', async () => {
   expect(response.body.success).toBe(true);
 });
 
-test('Should response an error forn an invalid user', async () => {
+test('Should response an error for an invalid user', async () => {
   const body = {
     username: faker.internet.userName(),
     password: faker.internet.password(),
