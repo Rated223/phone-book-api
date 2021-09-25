@@ -1,7 +1,7 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import login from './login';
-import signup from './singup';
+import signup from './signup';
 
 const authRouter = Router();
 

@@ -16,6 +16,7 @@ const saveContact = async (req, res) => {
       data: { contact },
     });
   } catch (error) {
+    console.log('error', error);
     manageErrors(error, res);
   }
 };

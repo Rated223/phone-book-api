@@ -15,9 +15,6 @@ const Contact = sequelize.define(
     phone: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isNumeric: true,
-      },
     },
   },
   {
