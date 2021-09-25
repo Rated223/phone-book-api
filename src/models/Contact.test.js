@@ -36,7 +36,7 @@ test('Should create 2 new contacts', async () => {
 
 test('should delete a contact', async () => {
   const contact = await Contact.findOne();
-  if (!contact) throw new Error('No register for contact');
+  if (!contact) throw new Error('No register for contact.');
 
   await Contact.destroy({ where: { id: contact.id } });
 
