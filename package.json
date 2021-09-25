@@ -1,0 +1,41 @@
+{
+  "name": "phone-book-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src --out-dir dist --copy-files",
+    "start": "env-cmd -f configs/dev.env nodemon -e js,json --exec babel-node src/index.js",
+    "start:prod": "npm run build && node dist/index.js",
+    "test": "env-cmd -f ./configs/test.env jest --runInBand --detectOpenHandles",
+    "dev:sync": "env-cmd -f ./configs/dev.env babel-node ./src/database/sync.js",
+    "test:sync": "env-cmd -f ./configs/test.env babel-node ./src/database/sync.js"
+  },
+  "author": "rated223",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "celebrate": "^15.0.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/register": "^7.15.3",
+    "env-cmd": "^10.1.0",
+    "eslint": "^7.7.0",
+    "eslint-plugin-node": "^11.1.0",
+    "faker": "^5.5.3",
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "sequelize-cli": "^6.2.0",
+    "supertest": "^6.1.3"
+  }
+}
