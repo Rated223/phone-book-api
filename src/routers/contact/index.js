@@ -3,11 +3,13 @@ import { Router } from 'express';
 import getContact from './getContact';
 import getContacts from './getContacts';
 import saveContact from './saveContact';
+import updateContact from './updateContact';
 import deleteContact from './deleteContact';
 
 const contactRouter = Router();
 
 contactRouter.get('/contacts', getContacts);
+
 contactRouter.get(
   '/contacts/:contactId',
   celebrate({
@@ -17,6 +19,7 @@ contactRouter.get(
   }),
   getContact
 );
+
 contactRouter.post(
   '/contacts',
   celebrate({
@@ -28,6 +31,22 @@ contactRouter.post(
   }),
   saveContact
 );
+
+contactRouter.put(
+  '/contacts/:contactId',
+  celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+      contactId: Joi.number().integer(),
+    }),
+    [Segments.BODY]: Joi.object().keys({
+      firstName: Joi.string().required(),
+      lastName: Joi.string().required(),
+      phone: Joi.string().required(),
+    }),
+  }),
+  updateContact
+);
+
 contactRouter.delete(
   '/contacts/:contactId',
   celebrate({
