@@ -1,4 +1,5 @@
 import { errors as celebrateErrors } from 'celebrate';
+import cors from 'cors';
 import express from 'express';
 import jwt from 'express-jwt';
 import sequelize from './database/connection';
@@ -11,6 +12,7 @@ sequelize
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 const secret = process.env.CONN_KEY || 'secret',
   algorithm = process.env.CONN_ALGORITHM || 'RS256';
