@@ -2,6 +2,8 @@ import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import login from './login';
 import signup from './signup';
+import newPasswordRequest from './newPasswordRequest';
+import resetPassword from './resetPassword';
 
 const authRouter = Router();
 
@@ -28,6 +30,27 @@ authRouter.post(
     }),
   }),
   signup
+);
+
+authRouter.post(
+  '/reset-password',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      email: Joi.string().required(),
+    }),
+  }),
+  newPasswordRequest
+);
+
+authRouter.put(
+  '/reset-password',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      password: Joi.string().required(),
+      token: Joi.string().required(),
+    }),
+  }),
+  resetPassword
 );
 
 export default authRouter;

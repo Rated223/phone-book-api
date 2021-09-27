@@ -18,7 +18,7 @@ const secret = process.env.CONN_KEY || 'secret',
   algorithm = process.env.CONN_ALGORITHM || 'RS256';
 app.use(
   jwt({ credentialsRequired: false, secret, algorithms: [algorithm] }).unless({
-    path: ['/login', '/signup'],
+    path: ['/login', '/signup', '/reset-password'],
   })
 );
 app.use(function (err, req, res, next) {
